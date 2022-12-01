@@ -8,6 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentGroupRepository extends JpaRepository<StudentGroup, Integer> {
-    @Query("SELECT sg FROM StudentGroup sg where sg.groupId =?1")
+    @Query("SELECT sG FROM StudentGroup sG WHERE sG.groupId =?1")
     Optional<StudentGroup> findGroupId(Integer groupId);
 }

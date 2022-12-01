@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Slf4j
 @RestController
-@RequestMapping("api/v1/group")
+@RequestMapping("api/v1/studentgroup")
 public class StudentGroupController {
 
     private final StudentGroupService groupService;

@@ -33,7 +33,7 @@ public class StudentGroupService {
     public void deleteStudentGroup(Integer groupId){
         boolean exists = groupRepository.existsById(groupId);
         if(!exists) {
-            throw new IllegalStateException("group with id " + groupId + " does not exists");
+            throw new IllegalStateException("Chosen group with id: " + groupId + " doesn't exist");
         }
         groupRepository.deleteById(groupId);
     }
@@ -41,7 +41,7 @@ public class StudentGroupService {
     @Transactional
     public void updateStudentGroup(Integer groupId, String fypTitle) {
         StudentGroup group = groupRepository.findById(groupId)
-                .orElseThrow(() -> new IllegalStateException("group with id " + groupId + " does not exists"));
+                .orElseThrow(() -> new IllegalStateException("Chosen group with id: " + groupId + " doesn't exist"));
 
         if (fypTitle != null && fypTitle.length() > 0 && !Objects.equals(fypTitle, group.getFypTitle())) {
             group.setFypTitle(fypTitle);
