@@ -1,12 +1,12 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
-    name: evaluation
+    name: studentGroup
   datasource:
     password: 74108520
-    url: jdbc:postgresql://localhost:5432/evaluation
+    url: jdbc:postgresql://localhost:5432/studentGroup
     username: postgres
   jpa:
     hibernate:

@@ -12,6 +12,7 @@
     <module>student</module>
     <module>evaluator</module>
     <module>evaluation</module>
+    <module>studentGroup</module>
   </modules>
 
   <name>ProjetIntegration</name>
