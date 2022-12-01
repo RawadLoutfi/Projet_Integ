@@ -1,0 +1,7 @@
+com\projetInteg\student\Student.class
+com\projetInteg\student\StudentRegistrationRequest.class
+com\projetInteg\student\StudentService.class
+com\projetInteg\student\Student$StudentBuilder.class
+com\projetInteg\student\StudentApplication.class
+com\projetInteg\student\StudentController.class
+com\projetInteg\student\StudentRepository.class
