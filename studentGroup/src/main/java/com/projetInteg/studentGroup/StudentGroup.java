@@ -27,4 +27,20 @@ public class StudentGroup {
     )
     private Integer groupId;
     private String fypTitle;
+
+    public Integer getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getFypTitle() {
+        return fypTitle;
+    }
+
+    public void setFypTitle(String fypTitle) {
+        this.fypTitle = fypTitle;
+    }
 }
