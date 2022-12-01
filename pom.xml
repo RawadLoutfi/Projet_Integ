@@ -11,6 +11,7 @@
   <modules>
     <module>student</module>
     <module>evaluator</module>
+    <module>evaluation</module>
   </modules>
 
   <name>ProjetIntegration</name>
