@@ -9,8 +9,8 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 @Entity
 @Table
 public class StudentGroup {

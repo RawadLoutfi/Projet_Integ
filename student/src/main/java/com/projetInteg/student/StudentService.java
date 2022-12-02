@@ -6,8 +6,6 @@ import com.projetInteg.studentGroup.StudentGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +26,13 @@ public class StudentService {
         Optional<Student> studentOptional = studentRepository.
                 findStudentByEmail(student.getEmail());
 
-//        StudentGroup studentGroup = studentConfig.restTemplate().getForObject(
-//                "http://STUDENTGROUP/api/v1/studentgroup/{groupId}",StudentGroup.class,
-//                student.getGroupId()
-//        );
-//        if(studentGroup==null){
-//            throw new IllegalStateException("Group chosen with id: " + student.getGroupId() + " not found");
-//        }
+        StudentGroup studentGroup = studentConfig.restTemplate().getForObject(
+                "http://STUDENTGROUP/api/v1/studentgroup/{groupId}",StudentGroup.class,
+                student.getGroupId()
+        );
+        if(studentGroup==null){
+            throw new IllegalStateException("id: " + student.getGroupId() + " not found");
+        }
         if(studentOptional.isPresent()) {
             throw new IllegalStateException("Entered email is already taken");
         }
@@ -54,9 +52,15 @@ public class StudentService {
         if (firstName != null && firstName.length() > 0 && !Objects.equals(firstName, student.getFirstName())) {
             student.setFirstName(firstName);
         }
+        else {
+            throw new IllegalStateException("Invalid first name");
+        }
 
         if (lastName != null && lastName.length() > 0 && !Objects.equals(lastName, student.getLastName())) {
             student.setLastName(lastName);
+        }
+        else {
+            throw new IllegalStateException("Invalid last name");
         }
 
         if (groupId != null && !Objects.equals(groupId, student.getGroupId())) {
