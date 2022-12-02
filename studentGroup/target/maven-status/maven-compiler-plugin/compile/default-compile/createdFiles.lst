@@ -1,0 +1,6 @@
+com\projetInteg\studentGroup\StudentGroupService.class
+com\projetInteg\studentGroup\StudentGroupRepository.class
+com\projetInteg\studentGroup\StudentGroup.class
+com\projetInteg\studentGroup\StudentGroupApplication.class
+com\projetInteg\studentGroup\StudentGroup$StudentGroupBuilder.class
+com\projetInteg\studentGroup\StudentGroupController.class

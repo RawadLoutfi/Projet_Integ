@@ -13,8 +13,8 @@ public record StudentController(StudentService studentService) {
 
 
     @PostMapping
-    public void addStudent(@RequestBody StudentRegistrationRequest studentRegistrationRequest){
-        studentService.registerStudent(studentRegistrationRequest);
+    public void addStudent(@RequestBody Student student){
+        studentService.registerStudent(student);
     }
 
     @GetMapping
@@ -31,13 +31,20 @@ public record StudentController(StudentService studentService) {
     public void updateStudent(
             @PathVariable("studentId") Integer studentId,
             @RequestBody Student student) {
-        studentService.updateStudent(studentId, student.getFirstName(), student.getLastName(), student.getEmail(), student.getMatricule(), student.getGroupId());
+        studentService.updateStudent(
+                studentId,
+                student.getFirstName(),
+                student.getLastName(),
+                student.getEmail(),
+                student.getMatricule(),
+                student.getGroupId()
+        );
     }
 
-//    @GetMapping(path = "/grade/{studentId}")
-//    public Double getGrade(@PathVariable("studentId") Integer studentId){
-//        return studentService.calculateGrade(studentId);
-//    }
+    @GetMapping(path = "/grade/{studentId}")
+    public Double getGrade(@PathVariable("studentId") Integer studentId){
+        return studentService.calculateGrade(studentId);
+    }
 
     @GetMapping(path = "/group/{groupId}")
     public List<Student> getStudentsByGroupId(@PathVariable("groupId") Integer groupId){

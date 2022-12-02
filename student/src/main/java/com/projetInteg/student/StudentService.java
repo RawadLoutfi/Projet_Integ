@@ -6,7 +6,6 @@ import com.projetInteg.studentGroup.StudentGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 
 import javax.transaction.Transactional;
@@ -25,23 +24,17 @@ public class StudentService {
         this.studentRepository = studentRepository;
         this.studentConfig = studentConfig;
     }
-    public void registerStudent(StudentRegistrationRequest request) {
+    public void registerStudent(Student student) {
         Optional<Student> studentOptional = studentRepository.
-                findStudentByEmail(request.email());
+                findStudentByEmail(student.getEmail());
 
-        Student student = Student.builder()
-                .firstName(request.firstName())
-                .lastName(request.lastName())
-                .email(request.email())
-                .matricule(request.matricule())
-                .build();
-        StudentGroup studentGroup = studentConfig.restTemplate().getForObject(
-                "http://localhost:8080/api/v1/group/{groupId}",StudentGroup.class,
-                student.getGroupId()
-        );
-        if(studentGroup==null){
-            throw new IllegalStateException("Group chosen with id: " + student.getGroupId() + " not found");
-        }
+//        StudentGroup studentGroup = studentConfig.restTemplate().getForObject(
+//                "http://STUDENTGROUP/api/v1/studentgroup/{groupId}",StudentGroup.class,
+//                student.getGroupId()
+//        );
+//        if(studentGroup==null){
+//            throw new IllegalStateException("Group chosen with id: " + student.getGroupId() + " not found");
+//        }
         if(studentOptional.isPresent()) {
             throw new IllegalStateException("Entered email is already taken");
         }
@@ -52,13 +45,6 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void deleteStudent(Integer id){
-        boolean exists = studentRepository.existsById(id);
-        if(!exists) {
-            throw new IllegalStateException("The student chosen with this id:  " + id + " does not exist");
-        }
-        studentRepository.deleteById(id);
-    }
 
     @Transactional
     public void updateStudent(Integer studentId, String firstName, String lastName, String email, Long matricule, Integer groupId) {
@@ -89,6 +75,13 @@ public class StudentService {
             student.setEmail(email);
         }
     }
+    public void deleteStudent(Integer id){
+        boolean exists = studentRepository.existsById(id);
+        if(!exists) {
+            throw new IllegalStateException("The student chosen with this id:  " + id + " does not exist");
+        }
+        studentRepository.deleteById(id);
+    }
 
     public List<Student> getStudentsByGroupId(Integer groupId){
         return studentRepository.findStudentsByGroupId(groupId);
@@ -101,10 +94,10 @@ public class StudentService {
 
         ResponseEntity<Evaluation[]> responseEvaluations = studentConfig.restTemplate().getForEntity(
                 "http://EVALUATION/api/v1/evaluation/student/{studentId}",
-                Evaluation[].class, student.getId()
+                Evaluation[].class, student.getStudentId()
         );
         Evaluation[] evaluations = responseEvaluations.getBody();
-        List<Double> percentages = new ArrayList<Double>() {{
+        List<Double> percentages = new ArrayList<>() {{
             add(0.1);
             add(0.15);
             add(0.1);

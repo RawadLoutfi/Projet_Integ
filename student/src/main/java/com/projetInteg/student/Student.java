@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table
 public class Student {
 
     @Id
@@ -23,7 +24,7 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_id_sequence"
     )
-    private Integer id;
+    private Integer studentId;
     private String firstName;
     private String lastName;
     private String email;
@@ -31,12 +32,12 @@ public class Student {
     private Integer groupId;
     private Double grade;
 
-    public Integer getId() {
-        return id;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setStudentId(Integer id) {
+        this.studentId = id;
     }
 
     public String getFirstName() {
