@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="evaluation" />
         <module name="studentGroup" />
+        <module name="server-eureka" />
         <module name="student" />
         <module name="evaluator" />
       </profile>

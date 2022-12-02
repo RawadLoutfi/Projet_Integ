@@ -72,6 +72,5 @@ public class EvaluationService {
             evaluation.setCriteria8(criteria8);
         }
 
-
     }
 }

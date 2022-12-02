@@ -29,6 +29,7 @@ public class Student {
     private String email;
     private Long matricule;
     private Integer groupId;
+    private Double grade;
 
     public Integer getId() {
         return id;
@@ -76,5 +77,13 @@ public class Student {
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
+    }
+
+    public Double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
     }
 }
