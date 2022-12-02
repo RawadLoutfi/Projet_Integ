@@ -36,7 +36,7 @@ public class EvaluationService {
     @Transactional
     public void updateEvaluation(Integer evaluationId, Integer criteria1, Integer criteria2, Integer criteria3,
                                  Integer criteria4, Integer criteria5, Integer criteria6,
-                                 Integer criteria7,Integer criteria8) {
+                                 Integer criteria7,Integer criteria8, Integer criteria9) {
         Evaluation evaluation = evaluationRepository.findById(evaluationId)
                 .orElseThrow(() -> new IllegalStateException("Evaluation with id " + evaluationId + " does not exists"));
 
@@ -71,6 +71,11 @@ public class EvaluationService {
         if (criteria8 != null && !Objects.equals(criteria7, evaluation.getCriteria8())) {
             evaluation.setCriteria8(criteria8);
         }
+
+        if (criteria9 != null && !Objects.equals(criteria8, evaluation.getCriteria9())) {
+            evaluation.setCriteria9(criteria9);
+        }
+
 
     }
 }

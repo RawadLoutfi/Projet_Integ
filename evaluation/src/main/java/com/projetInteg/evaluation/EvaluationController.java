@@ -46,7 +46,8 @@ public class EvaluationController {
                 evaluation.getCriteria5(),
                 evaluation.getCriteria6(),
                 evaluation.getCriteria7(),
-                evaluation.getCriteria8()
+                evaluation.getCriteria8(),
+                evaluation.getCriteria9()
         );
     }
 }

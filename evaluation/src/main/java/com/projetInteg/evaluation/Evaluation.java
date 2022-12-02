@@ -38,6 +38,8 @@ public class Evaluation {
     private Integer criteria7;
     private Integer criteria8;
 
+    private Integer criteria9;
+
     public Integer getId() {
         return id;
     }
@@ -124,6 +126,14 @@ public class Evaluation {
 
     public void setCriteria8(Integer criteria8) {
         this.criteria8 = criteria8;
+    }
+
+    public Integer getCriteria9() {
+        return criteria9;
+    }
+
+    public void setCriteria9(Integer criteria9) {
+        this.criteria9 = criteria9;
     }
 
     public List<Integer> getAllCriterias() {
