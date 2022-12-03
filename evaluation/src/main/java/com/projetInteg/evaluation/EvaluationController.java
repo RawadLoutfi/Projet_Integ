@@ -3,15 +3,12 @@ package com.projetInteg.evaluation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 
 @Slf4j
 @RestController
 @RequestMapping("api/v1/evaluation")
 public class EvaluationController {
-
     private final EvaluationService evaluationService;
 
     @Autowired

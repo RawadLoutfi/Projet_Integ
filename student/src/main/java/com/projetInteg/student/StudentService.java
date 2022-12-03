@@ -1,6 +1,5 @@
 package com.projetInteg.student;
 
-
 import com.projetInteg.evaluation.Evaluation;
 import com.projetInteg.studentGroup.StudentGroup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +21,27 @@ public class StudentService {
         this.studentRepository = studentRepository;
         this.studentConfig = studentConfig;
     }
+
     public void registerStudent(Student student) {
         Optional<Student> studentOptional = studentRepository.
                 findStudentByEmail(student.getEmail());
 
         StudentGroup studentGroup = studentConfig.restTemplate().getForObject(
-                "http://STUDENTGROUP/api/v1/studentgroup/{groupId}",StudentGroup.class,
+                "http://STUDENTGROUP/api/v1/studentgroup/{groupId}", StudentGroup.class,
                 student.getGroupId()
         );
-        if(studentGroup==null){
+        if (studentGroup == null) {
             throw new IllegalStateException("id: " + student.getGroupId() + " not found");
         }
-        if(studentOptional.isPresent()) {
+        if (studentOptional.isPresent()) {
             throw new IllegalStateException("Entered email is already taken");
         }
         studentRepository.save(student);
     }
 
-    public List<Student> getStudents(){
+    public List<Student> getStudents() {
         return studentRepository.findAll();
     }
-
 
     @Transactional
     public void updateStudent(Integer studentId, String firstName, String lastName, String email, Long matricule, Integer groupId) {
@@ -51,15 +50,13 @@ public class StudentService {
 
         if (firstName != null && firstName.length() > 0 && !Objects.equals(firstName, student.getFirstName())) {
             student.setFirstName(firstName);
-        }
-        else {
+        } else {
             throw new IllegalStateException("Invalid first name");
         }
 
         if (lastName != null && lastName.length() > 0 && !Objects.equals(lastName, student.getLastName())) {
             student.setLastName(lastName);
-        }
-        else {
+        } else {
             throw new IllegalStateException("Invalid last name");
         }
 
@@ -79,20 +76,21 @@ public class StudentService {
             student.setEmail(email);
         }
     }
-    public void deleteStudent(Integer id){
+
+    public void deleteStudent(Integer id) {
         boolean exists = studentRepository.existsById(id);
-        if(!exists) {
+        if (!exists) {
             throw new IllegalStateException("The student chosen with this id:  " + id + " does not exist");
         }
         studentRepository.deleteById(id);
     }
 
-    public List<Student> getStudentsByGroupId(Integer groupId){
+    public List<Student> getStudentsByGroupId(Integer groupId) {
         return studentRepository.findStudentsByGroupId(groupId);
     }
 
     @Transactional
-    public Double calculateGrade(Integer studentId){
+    public Double calculateGrade(Integer studentId) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalStateException("student with id " + studentId + " does not exists"));
 

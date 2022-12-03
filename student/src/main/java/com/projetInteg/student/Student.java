@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Table
 public class Student {
-
     @Id
     @SequenceGenerator(
             name = "student_id_sequence",
@@ -35,10 +32,6 @@ public class Student {
 
     public Integer getStudentId() {
         return studentId;
-    }
-
-    public void setStudentId(Integer id) {
-        this.studentId = id;
     }
 
     public String getFirstName() {
@@ -80,6 +73,5 @@ public class Student {
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
-
 
 }

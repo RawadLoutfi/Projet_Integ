@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Data
@@ -14,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table
 public class StudentGroup {
-
     @Id
     @SequenceGenerator(
             name = "studentGroup_id_sequence",

@@ -3,7 +3,6 @@ package com.projetInteg.studentGroup;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/v1/studentgroup")
 public class StudentGroupController {
-
     private final StudentGroupService groupService;
 
     @Autowired

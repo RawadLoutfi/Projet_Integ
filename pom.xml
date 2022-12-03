@@ -18,7 +18,6 @@
   </modules>
 
   <name>ProjetIntegration</name>
-<!--  <url>https://www.test.com</url>-->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,20 +28,8 @@
     <spring.cloud-version>2020.0.3</spring.cloud-version>
   </properties>
 
-<!--  <distributionManagement>-->
-<!--    <repository>-->
-<!--      <id>nexus-site</id>-->
-<!--      <url>http://central_nexus/server</url>-->
-<!--    </repository>-->
-<!--  </distributionManagement>-->
-
   <dependencyManagement>
     <dependencies>
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.boot</groupId>-->
-<!--        <artifactId>spring-boot-starter-test</artifactId>-->
-<!--        <scope>test</scope>-->
-<!--      </dependency>-->
       <dependency>
         <groupId>com.projetInteg</groupId>
         <artifactId>my-app</artifactId>

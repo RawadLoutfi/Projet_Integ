@@ -49,8 +49,6 @@
             <artifactId>spring-boot-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -64,5 +62,4 @@
             <artifactId>spring-boot-test</artifactId>
         </dependency>
     </dependencies>
-
 </project>

@@ -8,14 +8,12 @@ import java.util.Objects;
 
 @Service
 public class EvaluationService {
-
     private final EvaluationRepository evaluationRepository;
 
     @Autowired
     public EvaluationService(EvaluationRepository evaluationRepository) {
         this.evaluationRepository = evaluationRepository;
     }
-
     public List<Evaluation> getEvaluationsByStudentId(Integer id){
         return evaluationRepository.findByStudentId(id);
     }
@@ -74,7 +72,5 @@ public class EvaluationService {
         if (criteria9 != null && !Objects.equals(criteria8, evaluation.getCriteria9())) {
             evaluation.setCriteria9(criteria9);
         }
-
-
     }
 }
