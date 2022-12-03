@@ -37,7 +37,7 @@ public class EvaluationService {
         Evaluation evaluation = evaluationRepository.findById(evaluationId)
                 .orElseThrow(() -> new IllegalStateException("Evaluation with id " + evaluationId + " does not exists"));
 
-        if (criteria1 != null && !Objects.equals(criteria1, evaluation.getCriteria1())) {
+        if (criteria1 != null) {
             evaluation.setCriteria1(criteria1);
         }
 

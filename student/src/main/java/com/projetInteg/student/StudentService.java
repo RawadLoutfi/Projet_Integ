@@ -117,7 +117,7 @@ public class StudentService {
             res /= evaluations.length;
             grade += res * percentages.get(i);
         }
-        student.setGrade(grade * 5);
+        student.setGrade(grade);
         return student.getGrade();
     }
     public List<Student> getStudentsByGroupId(Integer groupId) {

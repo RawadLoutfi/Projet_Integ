@@ -36,7 +36,6 @@ public class Evaluation {
     private Integer criteria6;
     private Integer criteria7;
     private Integer criteria8;
-
     private Integer criteria9;
 
     public Integer getId() {
@@ -145,6 +144,7 @@ public class Evaluation {
             add(criteria6);
             add(criteria7);
             add(criteria8);
+            add(criteria9);
         }};
     }
 }
