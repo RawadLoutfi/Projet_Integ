@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Slf4j
 @RestController
+@Slf4j
 @RequestMapping("/api/v1/students")
 public record StudentController(StudentService studentService) {
     @PostMapping
@@ -31,18 +31,18 @@ public record StudentController(StudentService studentService) {
                 studentId,
                 student.getFirstName(),
                 student.getLastName(),
-                student.getEmail(),
                 student.getMatricule(),
+                student.getEmail(),
                 student.getGroupId()
         );
-    }
-    @GetMapping(path = "/grade/{studentId}")
-    public Double getGrade(@PathVariable("studentId") Integer studentId){
-        return studentService.calculateGrade(studentId);
     }
     @GetMapping(path = "/group/{groupId}")
     public List<Student> getStudentsByGroupId(@PathVariable("groupId") Integer groupId){
         return studentService.getStudentsByGroupId(groupId);
+    }
+    @GetMapping(path = "/grade/{studentId}")
+    public Double getGrade(@PathVariable("studentId") Integer studentId){
+        return studentService.calculateGrade(studentId);
     }
 
 }

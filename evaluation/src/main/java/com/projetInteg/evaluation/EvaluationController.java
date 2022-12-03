@@ -27,7 +27,7 @@ public class EvaluationController {
     }
 
     @DeleteMapping(path="{evaluationId}")
-    public void DeleteEvaluation(@PathVariable("evaluationId") Integer id){
+    public void deleteEvaluation(@PathVariable("evaluationId") Integer id){
         evaluationService.deleteEvaluation(id);
     }
 

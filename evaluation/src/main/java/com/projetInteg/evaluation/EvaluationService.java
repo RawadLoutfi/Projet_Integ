@@ -18,10 +18,6 @@ public class EvaluationService {
         return evaluationRepository.findByStudentId(id);
     }
 
-    public void addEvaluation(Evaluation evaluation){
-        evaluationRepository.save(evaluation);
-    }
-
     public void deleteEvaluation(Integer evaluationId){
         boolean exists = evaluationRepository.existsById(evaluationId);
         if(!exists) {
@@ -29,6 +25,10 @@ public class EvaluationService {
         }
         evaluationRepository.deleteById(evaluationId);
     }
+    public void addEvaluation(Evaluation evaluation){
+        evaluationRepository.save(evaluation);
+    }
+
 
     @Transactional
     public void updateEvaluation(Integer evaluationId, Integer criteria1, Integer criteria2, Integer criteria3,

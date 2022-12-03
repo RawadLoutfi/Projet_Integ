@@ -17,7 +17,7 @@ public class StudentService {
     private final StudentConfig studentConfig;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, StudentConfig studentConfig) {
+    public StudentService( StudentConfig studentConfig, StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
         this.studentConfig = studentConfig;
     }
@@ -30,11 +30,11 @@ public class StudentService {
                 "http://STUDENTGROUP/api/v1/studentgroup/{groupId}", StudentGroup.class,
                 student.getGroupId()
         );
-        if (studentGroup == null) {
-            throw new IllegalStateException("id: " + student.getGroupId() + " not found");
-        }
         if (studentOptional.isPresent()) {
             throw new IllegalStateException("Entered email is already taken");
+        }
+        if (studentGroup == null) {
+            throw new IllegalStateException("id: " + student.getGroupId() + " not found");
         }
         studentRepository.save(student);
     }
@@ -44,17 +44,17 @@ public class StudentService {
     }
 
     @Transactional
-    public void updateStudent(Integer studentId, String firstName, String lastName, String email, Long matricule, Integer groupId) {
+    public void updateStudent(Integer studentId, String firstName, String lastName, Long matricule, String email, Integer groupId) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalStateException("student with id " + studentId + " does not exists"));
 
-        if (firstName != null && firstName.length() > 0 && !Objects.equals(firstName, student.getFirstName())) {
+        if (firstName != null && firstName.length() > 0) {
             student.setFirstName(firstName);
         } else {
             throw new IllegalStateException("Invalid first name");
         }
 
-        if (lastName != null && lastName.length() > 0 && !Objects.equals(lastName, student.getLastName())) {
+        if (lastName != null && lastName.length() > 0 ) {
             student.setLastName(lastName);
         } else {
             throw new IllegalStateException("Invalid last name");
@@ -85,9 +85,6 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<Student> getStudentsByGroupId(Integer groupId) {
-        return studentRepository.findStudentsByGroupId(groupId);
-    }
 
     @Transactional
     public Double calculateGrade(Integer studentId) {
@@ -111,16 +108,19 @@ public class StudentService {
         }};
         double grade = 0.0;
         for (int i = 0; i < 8; i++) {
-            double tmpGrade = 0;
+            double res = 0;
             assert evaluations != null;
             for (Evaluation evaluation : evaluations) {
                 System.out.println(evaluation);
-                tmpGrade += evaluation.getAllCriterias().get(i);
+                res += evaluation.getAllCriterias().get(i);
             }
-            tmpGrade /= evaluations.length;
-            grade += tmpGrade * percentages.get(i);
+            res /= evaluations.length;
+            grade += res * percentages.get(i);
         }
         student.setGrade(grade * 5);
         return student.getGrade();
+    }
+    public List<Student> getStudentsByGroupId(Integer groupId) {
+        return studentRepository.findStudentsByGroupId(groupId);
     }
 }
